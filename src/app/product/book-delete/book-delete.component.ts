@@ -10,16 +10,16 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 })
 export class BookDeleteComponent implements OnInit {
 
-  productForm: FormGroup;
+  bookForm: FormGroup;
   id: number;
 
-  constructor(private productService: BookService,
+  constructor(private bookService: BookService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       const product = this.getProduct(this.id);
-      this.productForm = new FormGroup({
+      this.bookForm = new FormGroup({
         id: new FormControl(product.id),
         name: new FormControl(product.name),
         author: new FormControl(product.author),
@@ -32,11 +32,12 @@ export class BookDeleteComponent implements OnInit {
   }
 
   getProduct(id: number) {
-    return this.productService.findById(id);
+    return this.bookService.findById(id);
   }
 
   deleteProduct(id: number) {
-    this.productService.deleteProduct(id);
+    this.bookService.deleteBook(id);
+    alert('xóa thành công');
     this.router.navigate(['/product/list']);
   }
 }

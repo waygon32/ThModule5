@@ -1,7 +1,7 @@
-<h1>Cập nhật thông tin sản phẩm</h1>
-<form [formGroup]="productForm" (ngSubmit)="updateProduct(id)">
+<h1>Cập nhật thông sách</h1>
+<form [formGroup]="bookForm" (ngSubmit)="updateProduct(id)">
   <table>
-    <tr>
+    <tr hidden>
       <td>Mã sách:</td>
       <td><input type="number" formControlName="id"></td>
     </tr>

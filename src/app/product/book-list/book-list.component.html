@@ -1,19 +1,18 @@
-<h1>Danh sách sản phẩm</h1>
-<a routerLink="/product/create">Tạo mới sản phẩm</a>
+<h1>Danh sách các quyển sách</h1>
+<a routerLink="/product/create">Tạo mới sách</a>
 <table>
   <tr>
     <td>#</td>
     <td>Tên</td>
     <td>Tác giả</td>
-    <td>Mô tả</td>
     <td colspan="2"></td>
   </tr>
-  <tr *ngFor="let product of products; index as i">
+  <tr *ngFor="let book of books; index as i">
     <td>{{i + 1}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.author}}</td>
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
 <!--    <td>{{product.description}}</td>-->
-    <td><a [routerLink]="['/product/edit',product.id]">Edit</a></td>
-    <td><a [routerLink]="['/product/delete',product.id]">Delete</a></td>
+    <td><a [routerLink]="['/product/edit',book.id]">Edit</a></td>
+    <td><a [routerLink]="['/product/delete',book.id]">Delete</a></td>
   </tr>
 </table>

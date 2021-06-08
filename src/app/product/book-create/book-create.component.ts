@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../service/book.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-create',
@@ -9,13 +10,14 @@ import {BookService} from '../../service/book.service';
 })
 export class BookCreateComponent implements OnInit {
   bookForm: FormGroup = new FormGroup({
-    id: new FormControl("",Validators.required),
-    name: new FormControl("",Validators.required),
-    author: new FormControl("",Validators.required),
+    id: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    author: new FormControl('', Validators.required),
     description: new FormControl(),
   });
 
-  constructor(private productService: BookService) {
+  constructor(private bookService: BookService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -23,8 +25,9 @@ export class BookCreateComponent implements OnInit {
 
   submit() {
     const product = this.bookForm.value;
-    this.productService.saveProduct(product);
+    this.bookService.saveBook(product);
     this.bookForm.reset();
     alert('thêm mới thành công');
+    this.router.navigate(['/product/list']);
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../service/book.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -9,15 +9,16 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./book-edit.component.css']
 })
 export class BookEditComponent implements OnInit {
-  productForm: FormGroup;
+  bookForm: FormGroup;
   id: number;
 
-  constructor(private productService: BookService,
-              private activatedRoute: ActivatedRoute) {
+  constructor(private bookService: BookService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       const product = this.getProduct(this.id);
-      this.productForm = new FormGroup({
+      this.bookForm = new FormGroup({
         id: new FormControl(product.id),
         name: new FormControl(product.name),
         author: new FormControl(product.author),
@@ -30,12 +31,13 @@ export class BookEditComponent implements OnInit {
   }
 
   getProduct(id: number) {
-    return this.productService.findById(id);
+    return this.bookService.findById(id);
   }
 
   updateProduct(id: number) {
-    const product = this.productForm.value;
-    this.productService.updateProduct(id, product);
+    const product = this.bookForm.value;
+    this.bookService.updateBook(id, product);
     alert('Cập nhật thành công');
+    this.router.navigate(['/product/list']);
   }
 }

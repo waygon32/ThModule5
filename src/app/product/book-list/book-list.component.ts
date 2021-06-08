@@ -8,7 +8,7 @@ import {Book} from '../../model/book';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  products: Book[] = [];
+  books: Book[] = [];
 
   constructor(private productService: BookService) {
   }
@@ -18,7 +18,7 @@ export class BookListComponent implements OnInit {
   }
 
   getAll() {
-    this.products = this.productService.getAll();
+    this.books = this.productService.getAll();
   }
 
 }

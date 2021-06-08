@@ -5,7 +5,7 @@ import {Book} from '../model/book';
   providedIn: 'root'
 })
 export class BookService {
-  products: Book[] = [{
+  books: Book[] = [{
     id: 1,
     name: 'Không gia đình',
     author: "Hector Malot",
@@ -21,27 +21,27 @@ export class BookService {
   }
 
   getAll() {
-    return this.products;
+    return this.books;
   }
 
-  saveProduct(product) {
-    this.products.push(product);
+  saveBook(product) {
+    this.books.push(product);
   }
 
   findById(id: number) {
-    return this.products.find(product => product.id === id);
+    return this.books.find(product => product.id === id);
   }
 
-  updateProduct(id: number, product: Book) {
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
-        this.products[i] = product;
+  updateBook(id: number, product: Book) {
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].id === id) {
+        this.books[i] = product;
       }
     }
   }
 
-  deleteProduct(id: number) {
-    this.products = this.products.filter(product => {
+  deleteBook(id: number) {
+    this.books = this.books.filter(product => {
       return product.id !== id;
     });
   }
